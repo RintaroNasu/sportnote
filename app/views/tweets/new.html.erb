@@ -1,0 +1,11 @@
+
+<h1>日記入力ページ</h1>
+<%= form_for @tweet do |f| %>
+    <div class="field">
+        <%= f.label :body %>
+        <%= f.text_field :body, :size => 140 %>
+    </div>
+    <%= f.submit "送信する" %>
+<% end %>
+
+<%= current_student.id %>

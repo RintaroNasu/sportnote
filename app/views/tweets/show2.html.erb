@@ -1,0 +1,17 @@
+<% @tweets.each do |t| %>
+    <%# <% if t.created_at.to_date.to_s == params[:id] %>
+    <% if params[:date] == t.created_at.strftime('%Y-%m-%d')  %>
+        <div class="tweet">
+            <%= t.body %>
+        </div>
+        <div class="comment-wrapper">
+            <p>コメント一覧</p>
+            <% t.comments.each do |c| %>
+                <div>
+                    <%= c.content %>
+                </div>
+                <br>
+            <% end %>
+        </div>
+    <% end%>
+<% end%>

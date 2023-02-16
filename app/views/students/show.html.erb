@@ -1,0 +1,17 @@
+<h1>students#show</h1>
+<p>名前 : <%= @student.name %></p>
+<p>メールアドレス : <%= @student.email %></p>
+<p>学校名 : <%= @student.team %></p>
+<p>生徒ID : <%= @student.id %></p>
+
+<% if current_student.id == @student.id %>
+    <%= link_to "編集する", edit_student_registration_path %>
+<% end %>
+<%= link_to 'ログアウト',  destroy_student_session_path, method: :delete %>　
+<%= link_to 'トップページへ',   root_path %>
+<%= link_to '日記入力ページへ', new_tweet_path %>
+
+
+<%= month_calendar events: @tweets do |date, tweets| %>
+    <%= link_to date.day, show2_path(@student.id, date:date) %>
+<% end %>

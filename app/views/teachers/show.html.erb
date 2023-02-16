@@ -1,0 +1,30 @@
+<h1>teachers#show</h1>
+<p>名前 : <%= @teacher.name %></p>
+<p>メールアドレス : <%= @teacher.email %></p>
+<p>学校名 : <%= @teacher.team %></p>
+<p>先生id : <%= @teacher.id %></p>
+<% if current_teacher.id == @teacher.id %>
+    <%= link_to "編集する", edit_teacher_registration_path %>
+<% end %>
+<%= link_to 'ログアウト', destroy_teacher_session_path, method: :delete %>　
+<%= link_to 'トップページへ',   root_path %>
+<%= link_to '生徒アカウント作成',  new_student_registration_path %>
+<% if teacher_signed_in? %>
+    <% if current_teacher.admin? %>
+    <h1>先生一覧</h1>
+            <% @teachers.each do |t| %>
+                <%= t.name %>
+                <%= t.team %>
+                <%= button_to "削除する", teacher_path(t.id), method: :delete %>
+            <% end %>
+    <% end %>
+<% end %>
+
+
+<h1>日付一覧</h1>
+<div class="tweets-container">
+    <% @days.each do |t| %>
+            <%= link_to t, tweet_path(t) %>
+    <% end %>
+</div>
+

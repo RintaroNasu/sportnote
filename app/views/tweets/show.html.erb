@@ -1,0 +1,24 @@
+<%= page_entries_info @tweet %>
+<% @tweet.each do |t| %>
+    <% if t.created_at.to_date.to_s == params[:id] %>
+        <div class="tweet">
+            <%= t.body %>
+            <%= t.student.name %>
+        </div>
+        <%= form_with(model: [t, Comment.new], local: true) do |f| %>
+            <%= f.text_area :content %>
+            <%= f.hidden_field :student_id, value: t.student.id %>
+            <%= f.submit %>
+        <% end %>
+        <div class="comment-wrapper">
+            <p>コメント一覧</p>
+            <% t.comments.each do |c| %>
+                <div>
+                    <%= c.content %>
+                </div>
+                <br>
+            <% end %>
+        </div>
+    <% end%>
+<% end%>
+<%= paginate @tweet %>
